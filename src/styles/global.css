@@ -44,6 +44,8 @@ html[data-theme="dark"] {
   a,
   button {
     @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    transition: color 0.15s ease;
+    will-change: transform;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {
@@ -59,8 +61,65 @@ html[data-theme="dark"] {
   @apply mx-auto w-full max-w-app px-4;
 }
 
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid color-mix(in oklab, var(--color-foreground), transparent 10%);
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: border-color 0.15s ease, border-width 0.15s ease;
+}
+
+#custom-cursor.is-hovering {
+  border-width: 2px;
+}
+
 .active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  @apply text-accent;
+}
+
+.nav-tab {
+  text-decoration: none;
+}
+
+.nav-tab__ink {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-tab__label {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-tab__squiggle {
+  position: absolute;
+  left: -0.12em;
+  width: calc(100% + 0.24em);
+  bottom: -0.35rem;
+  height: 0.7rem;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.nav-tab__squiggle-path {
+  stroke: var(--color-accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  opacity: 0;
 }
 
 /* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
