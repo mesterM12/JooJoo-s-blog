@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "svelte-code-writer": {
+      "source": "sveltejs/mcp",
+      "sourceType": "github",
+      "computedHash": "c0e2cce9855f8e312cbb0a05aef164b4659c672d7723e4e598ffa6bc94890542"
+    },
+    "svelte-core-bestpractices": {
+      "source": "sveltejs/mcp",
+      "sourceType": "github",
+      "computedHash": "029f15399e7dbba15c9a8ed70bc7f9e6322d89a905efbdcc125443b37d087175"
+    }
+  }
+}
