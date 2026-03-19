@@ -475,7 +475,7 @@
     scrollbar-color: var(--terminal-scrollbar-thumb) var(--terminal-scrollbar-track);
   }
   :global(.xterm .xterm-viewport){
-    background: var(--terminal-screen-bg);
+    background: var(--terminal-screen-bg) !important;
   }
 
   :global(.terminal-shell .xterm-rows) {
