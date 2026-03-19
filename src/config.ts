@@ -1,7 +1,7 @@
 export const SITE = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
-  author: "Armin",
-  profile: "https://satnaing.dev/",
+  website: "https://portfolio.joojoo-lab.xyz/", // replace this with your deployed domain
+  author: "Armin Mohebbipour",
+  profile: "https://portfolio.joojoo-lab.xyz/",
   desc: "A portfolio website and blog for Armin.",
   title: "Armin's Portfolio",
   ogImage: "og.jpg",

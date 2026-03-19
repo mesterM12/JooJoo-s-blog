@@ -23,7 +23,7 @@ export default async () => {
       type: "div",
       props: {
         style: {
-          background: "#05080d",
+          background: "#070b11",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -38,8 +38,8 @@ export default async () => {
               style: {
                 position: "absolute",
                 inset: "52px 40px 34px 56px",
-                border: "2px solid #223350",
-                background: "#0a101d",
+                border: "2px solid #1e3f32",
+                background: "#0b121a",
                 borderRadius: "16px",
               },
             },
@@ -48,14 +48,14 @@ export default async () => {
             type: "div",
             props: {
               style: {
-                border: "2px solid #31466f",
-                background: "#0d1525",
+                border: "2px solid #1e3f32",
+                background: "#0c141d",
                 borderRadius: "16px",
                 display: "flex",
                 flexDirection: "column",
                 width: "100%",
                 height: "100%",
-                color: "#dbe6ff",
+                color: "#e9eef6",
               },
               children: [
                 {
@@ -63,13 +63,13 @@ export default async () => {
                   props: {
                     style: {
                       height: "68px",
-                      borderBottom: "2px solid #31466f",
+                      borderBottom: "2px solid #1e3f32",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
                       padding: "0 26px",
                       fontSize: 24,
-                      color: "#8ca3cf",
+                      color: "#8ea0b5",
                     },
                     children: [
                       {
@@ -84,7 +84,7 @@ export default async () => {
                                   width: "14px",
                                   height: "14px",
                                   borderRadius: "999px",
-                                  border: "2px solid #7087b5",
+                                  border: "2px solid #546478",
                                 },
                               },
                             },
@@ -95,7 +95,7 @@ export default async () => {
                                   width: "14px",
                                   height: "14px",
                                   borderRadius: "999px",
-                                  border: "2px solid #7087b5",
+                                  border: "2px solid #546478",
                                 },
                               },
                             },
@@ -106,7 +106,7 @@ export default async () => {
                                   width: "14px",
                                   height: "14px",
                                   borderRadius: "999px",
-                                  border: "2px solid #7087b5",
+                                  border: "2px solid #546478",
                                 },
                               },
                             },
@@ -139,7 +139,7 @@ export default async () => {
                             {
                               type: "p",
                               props: {
-                                style: { fontSize: 25, color: "#7f95c2" },
+                                style: { fontSize: 25, color: "#8ea0b5" },
                                 children: commandWhoami,
                               },
                             },
@@ -149,7 +149,7 @@ export default async () => {
                                 style: {
                                   fontSize: 78,
                                   fontWeight: 700,
-                                  color: "#f2f6ff",
+                                  color: "#e9eef6",
                                   lineHeight: 1.03,
                                   maxHeight: "176px",
                                   overflow: "hidden",
@@ -162,7 +162,7 @@ export default async () => {
                               props: {
                                 style: {
                                   fontSize: 30,
-                                  color: "#a9bcdf",
+                                  color: "#b8c6d6",
                                   lineHeight: 1.3,
                                   maxHeight: "116px",
                                   overflow: "hidden",
@@ -177,13 +177,13 @@ export default async () => {
                         type: "div",
                         props: {
                           style: {
-                            borderTop: "2px solid #283d64",
+                            borderTop: "2px solid #1e3f32",
                             paddingTop: "18px",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
                             fontSize: 24,
-                            color: "#8ca3cf",
+                            color: "#8ea0b5",
                           },
                           children: [
                             {
