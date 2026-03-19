@@ -13,9 +13,9 @@ tags:
 description: A full write-up of Zaal, a manually built Node.js and TypeScript system that monitors Windows RDP logins, alerts support staff through Twilio, and bans abusive IPs.
 ---
 
-Zaal was one of my most hands-on security projects. I built it end to end with minimal abstraction: a backend API in Node.js and TypeScript, a plain HTML plus TypeScript frontend, and a host script workflow that watched Windows Event Logs for RDP activity.
+Zaal was one of my most hands-on security projects. I built it end to end with very little abstraction: a backend API in Node.js and TypeScript, a plain HTML and TypeScript frontend, and a host-side script flow that watched Windows Event Logs for RDP activity.
 
-It was not meant to be a perfect enterprise SIEM. It was meant to prove a practical point: even with a simple stack and manual implementations, you can build a working detection and response pipeline that catches suspicious behavior and alerts people quickly.
+I was not trying to build a full enterprise SIEM. I wanted to prove something simpler: even with a modest stack and a lot of manual implementation, you can still build a useful detection and response pipeline that catches suspicious behavior and alerts people quickly.
 
 The design goals were straightforward:
 
@@ -48,7 +48,7 @@ Core backend responsibilities:
 - invoke Twilio notifications when failure conditions were met
 - apply IP ban logic when repeated suspicious attempts crossed limits
 
-This architecture gave me direct control over event ingestion and response policy, which was useful for understanding where detection systems can fail and how to harden them incrementally.
+That gave me direct control over event ingestion and response policy, which was exactly what I wanted for a project like this. It made it easier to see where detection systems can fail and where I needed to harden things over time.
 
 ## Security model (manual hashing, salting, and token auth)
 
@@ -58,7 +58,7 @@ Authentication and credential handling were implemented manually as part of the 
 - tokens were issued and validated by custom middleware logic
 - auth checks were explicit in route handlers instead of delegated to large framework plugins
 
-This was more work than using an off-the-shelf auth package, but it made the security model easier to reason about from first principles. I could see every decision path, every trust boundary, and every failure mode directly in code.
+This was more work than using an off-the-shelf auth package, but that was part of the point. I wanted to reason through the security model from first principles and see the trust boundaries and failure modes directly in the code.
 
 ## Frontend architecture (HTML + TypeScript only)
 
@@ -88,7 +88,7 @@ Detection pipeline:
 4. classify event as success/failure and update counters
 5. trigger alerting and response when thresholds were exceeded
 
-This was a rudimentary intrusion detection system, but it worked as a practical early warning mechanism for suspicious remote access attempts.
+It was a simple intrusion detection system, but it worked well enough to act as an early warning mechanism for suspicious remote access attempts.
 
 ## Alerting and response (Twilio + IP banning)
 
@@ -103,22 +103,17 @@ When failed-login thresholds were crossed, the system also applied an automated 
 
 ## Trade-offs and limitations
 
-Like most first-principles security projects, Zaal deliberately accepted some limitations:
+Like most first-principles security projects, Zaal had some obvious limitations:
 
 - **Detection depth:** event-log pattern matching is useful but not comprehensive
 - **Potential false positives:** repeated failures can come from both attackers and legitimate user mistakes
 - **Manual operations burden:** custom auth and scripting increase maintenance overhead
 - **Scalability limits:** the design was practical for small to medium environments, not a full enterprise SOC replacement
 
-Those trade-offs were acceptable because the project objective was to build and understand the full path from event detection to incident response, not to replicate a commercial security platform.
+I was fine with those trade-offs because the goal was to build and understand the full path from event detection to incident response, not to imitate a commercial security platform.
 
-## What Zaal demonstrates as engineering work
+## What I learned from building Zaal
 
-Zaal demonstrates practical capability across backend engineering, security design, and systems thinking:
+What I still like about Zaal is that it forced me to build every part of the loop myself: the API, the auth flow, the event ingestion, the alerting path, and the response behavior. It was a good reminder that even a carefully scoped system can be useful if it is focused on the right thing.
 
-- building a complete Node.js + TypeScript API with MongoDB
-- implementing hashing, salting, and token auth manually
-- connecting Windows endpoint telemetry to a central backend
-- creating an actionable response pipeline with Twilio and IP bans
-
-Most importantly, it proved that a carefully scoped, manually built system can still provide meaningful security value when speed of detection and response is the priority.
+For this project, that thing was speed. I cared more about detecting suspicious behavior quickly and responding in a simple, actionable way than I did about building a giant platform. Zaal ended up teaching me a lot about backend engineering, security design, and how much value you can still get from a manually built system when the scope is disciplined.

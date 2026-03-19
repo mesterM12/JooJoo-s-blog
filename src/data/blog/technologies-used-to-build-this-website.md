@@ -11,9 +11,9 @@ tags:
 description: A complete overview of the tools, frameworks, and services used in this website.
 ---
 
-When people look at a portfolio or blog, they mostly see the design, content, and speed. What they do not see is the set of decisions that make those things possible. This post is a complete write-up of the stack behind this website and, more importantly, why each choice was made.
+When people look at a portfolio or blog, they usually notice the design, the writing, and how fast it feels. What they do not see is all the boring but important decisions underneath that. This post is a write-up of the stack behind the site and why I ended up choosing each part of it.
 
-The goal was not to pick trendy tools. The goal was to build a site that:
+I was not trying to pick trendy tools. I was trying to build a site that:
 
 - loads quickly on real devices and networks
 - stays easy to maintain as content grows
@@ -28,7 +28,7 @@ Below is the full breakdown of the architecture, tooling, and trade-offs.
 
 This website is built as a **content-first static site** with selective interactivity.
 
-In practice, that means most pages are generated to static HTML during build time, and JavaScript is only used when a section actually needs interactivity. This approach gives us fast first paint and strong SEO by default, while still allowing dynamic UI where it improves the user experience.
+In practice, that means most pages are generated to static HTML during build time, and JavaScript only shows up when a section actually needs interactivity. That gives me fast first paint and solid SEO by default, while still leaving room for dynamic UI where it actually helps.
 
 ### Why this architecture works well
 
@@ -38,7 +38,7 @@ In practice, that means most pages are generated to static HTML during build tim
 
 ## Core framework
 
-This site is built with [Astro](https://astro.build/), which is a strong fit for documentation, blogs, and portfolio projects.
+This site is built with [Astro](https://astro.build/), which felt like the right fit for a blog and portfolio site like this one.
 
 Astro gives this project three major advantages:
 
@@ -46,7 +46,7 @@ Astro gives this project three major advantages:
 - **Islands architecture** so we can hydrate only the components that need client-side interaction.
 - **A clean content workflow** using markdown files and structured frontmatter.
 
-From a user perspective, this translates to quick navigation, readable pages, and fewer layout or hydration issues. From a developer perspective, it keeps complexity under control.
+From the reader side, that mostly means fast navigation, readable pages, and fewer layout or hydration issues. From my side, it keeps the complexity under control.
 
 ## Language and component layer
 
@@ -64,12 +64,12 @@ For terminal-like UI moments, we use [xterm.js](https://xtermjs.org/) with `@xte
 
 ### Utility libraries
 
-Several small utilities support the content layer and URL consistency:
+I also use a few smaller utilities to keep the content layer and URLs consistent:
 
 - `dayjs` for date handling and formatting
 - `slugify` and `lodash.kebabcase` for stable URL/text transformations
 
-These tools reduce custom one-off logic and keep behavior predictable across posts and routes.
+They save me from writing a bunch of one-off logic and keep behavior predictable across posts and routes.
 
 ## Styling and design system
 
@@ -85,11 +85,11 @@ These tools reduce custom one-off logic and keep behavior predictable across pos
 
 ### Motion and interaction polish
 
-For animation where it adds clarity or delight, we use `gsap`. The intent is not to animate everything; it is to use motion selectively for narrative and transitions while preserving performance.
+For animation where it actually adds something, I use `gsap`. I am not trying to animate everything on the page. I mostly use motion where it helps with pacing, transitions, or a bit of personality without hurting performance.
 
 ## Content, markdown, and code blocks
 
-Blog content lives in markdown files under `src/data/blog`. This keeps authoring simple and version-control friendly.
+Blog content lives in markdown files under `src/data/blog`. That keeps writing simple and works well with version control.
 
 To improve both author workflow and reader experience, the project uses:
 
@@ -97,7 +97,7 @@ To improve both author workflow and reader experience, the project uses:
 - [remark-collapse](https://github.com/Rokt33r/remark-collapse) for collapsible content blocks where progressive disclosure helps readability.
 - [Shiki](https://shiki.style/) with `@shikijs/transformers` for high-quality code syntax highlighting.
 
-For developers reading technical posts, Shiki is a big quality improvement: token-accurate highlighting makes examples easier to parse and trust.
+For technical posts, Shiki makes a real difference. Accurate highlighting makes code examples easier to read and a lot less sloppy-looking.
 
 ## Search and discoverability
 
@@ -110,7 +110,7 @@ For developers reading technical posts, Shiki is a big quality improvement: toke
 - `@astrojs/sitemap` generates sitemap output for search engines.
 - `@astrojs/rss` generates RSS feeds for subscribers and feed readers.
 
-Together, these improve both discoverability and content distribution without adding operational complexity.
+Together, they improve discoverability and distribution without forcing me to run extra infrastructure.
 
 ## Images and social sharing
 
@@ -122,7 +122,7 @@ Together, these improve both discoverability and content distribution without ad
 
 For social sharing previews, we use [Satori](https://github.com/vercel/satori) with `@resvg/resvg-js` to generate OG images programmatically. This keeps social cards consistent with site branding and post metadata without manually designing each image.
 
-When links are shared, better OG cards increase clarity and click-through quality.
+When links get shared, better OG cards make the post look more intentional and easier to recognize.
 
 ## Build, quality, and developer tooling
 
@@ -134,7 +134,7 @@ The build command does three important steps:
 2. `astro build` for static site generation
 3. `pagefind --site dist` to create search indexes
 
-This ensures static output and search stay aligned every time we ship.
+That keeps the generated site and the search index aligned every time I ship.
 
 ### Code quality and consistency
 
@@ -143,7 +143,7 @@ This ensures static output and search stay aligned every time we ship.
 - `prettier-plugin-astro` and `prettier-plugin-tailwindcss` keep Astro and utility classes consistently formatted.
 - `eslint-plugin-astro` and TypeScript tooling (`typescript`, `typescript-eslint`) provide framework-aware linting and type checks.
 
-These tools mostly improve team velocity over time: fewer style debates, fewer preventable regressions, and easier reviews.
+These tools mostly help by cutting down on avoidable mistakes and keeping the project easier to maintain over time.
 
 ## Trade-offs and why they are acceptable
 
@@ -155,9 +155,9 @@ No stack is perfect, so it is worth being explicit about trade-offs:
 
 ## Final thoughts
 
-This stack is intentionally opinionated: static-first rendering with Astro, selective interactivity with Svelte, utility-first styling with Tailwind, and focused tooling for content, search, and SEO.
+This stack is pretty opinionated: static-first rendering with Astro, selective interactivity with Svelte, utility-first styling with Tailwind, and focused tooling for content, search, and SEO.
 
-The biggest outcome is user experience quality at every step:
+What I care about most is the experience it creates:
 
 - fast initial loads
 - readable long-form content
@@ -165,4 +165,4 @@ The biggest outcome is user experience quality at every step:
 - strong sharing previews
 - consistent interactions
 
-For maintainers, the same decisions also keep the project sustainable: writing stays simple, updates stay manageable, and quality checks are built into the workflow.
+The same decisions also keep the project sustainable on my side. Writing stays simple, updates stay manageable, and the quality checks are part of the workflow instead of an afterthought.
