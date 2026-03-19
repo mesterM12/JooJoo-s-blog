@@ -13,29 +13,15 @@ import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
-import aboutRaw from "@/pages/about.md?raw";
+
 
 const posts = await getCollection("blog");
-const aboutBody = aboutRaw
-  .replace(/^---[\s\S]*?---\s*/, "")
-  .replace(/!\[[^\]]*]\([^)]*\)/g, "")
-  .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-  .replace(/[`*_>#]/g, "")
-  .replace(/\s+/g, " ")
-  .trim();
+
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-const projectLikePosts = sortedPosts.filter(post => {
-  const isExample = post.id.startsWith("examples/");
-  const searchableText = `${post.data.title} ${post.data.description} ${(post.data.tags ?? []).join(" ")}`.toLowerCase();
-  const containsProjectKeyword =
-    searchableText.includes("project") ||
-    searchableText.includes("portfolio") ||
-    searchableText.includes("terminal");
-  return isExample || containsProjectKeyword;
-});
+const projectLikePosts = sortedPosts;
 
 const terminalProjects = projectLikePosts.slice(0, 9).map(post => {
   const links = [...(post.body ?? "").matchAll(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g)]
@@ -57,7 +43,7 @@ const terminalProjects = projectLikePosts.slice(0, 9).map(post => {
 const terminalProfile = {
   name: SITE.author,
   summary: SITE.desc,
-  about: aboutBody.slice(0, 360) + (aboutBody.length > 360 ? "..." : ""),
+  about: "I'm a software engineering student, and this is my attempt at documenting my journey into the world of software engineering.",
   profileUrl: SITE.profile,
   contacts: SOCIALS.map(({ name, href }) => ({
     label: name,
